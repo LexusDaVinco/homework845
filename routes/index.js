@@ -1,11 +1,16 @@
 const { Router } = require("express");
 const { save } = require("../save_json");
-let favouriteNumber = require("../number.json");
-const add = require("../add");
+const {greeting} = helloWorld = require("../hello_world.json");
 
 const router = new Router();
 
-router.get("/sum/:number1/:number2", (req, res) => {
+router.get("/", (req, res) => {
+  res.json({
+    status: "success",
+    text: greeting,
+  })
+});
+/* router.get("/sum/:number1/:number2", (req, res) => {
   const {number1, number2} = req.params;
   if(number1 == null || number2 == null) {
     res.status(400).send("Not provided numbers");
@@ -20,7 +25,7 @@ router.get("/sum/:number1/:number2", (req, res) => {
     status: "success",
     result: result,
   }); 
-});
+}); */
 
 router.post("/favNumber", (req, res) => {
   const {number} = req.body;
